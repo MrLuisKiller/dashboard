@@ -60,4 +60,20 @@ window.addEventListener('load', async () => {
             }
         }
     })
+
+    loadDropDownList()
 })
+
+const loadDropDownList = () => {
+    ddCodes.innerHTML = '';
+    ddCodes.innerHTML = '<option selected>Choose...</option>'
+    preSave.codeList.map(el => {
+        let exist = false
+        labels.forEach(label => {
+            if (el[1] == label)
+                exist = true
+        })
+        if (!exist)
+            ddCodes.innerHTML += `<option id="${el[0]}" value="${el[0]}">${el[1]}</option>`
+    })
+}

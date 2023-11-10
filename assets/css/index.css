@@ -22,6 +22,8 @@ background: #F5F6F7;
     background: #1B1B32;
 }
 
+tr i { cursor: pointer; }
+
 .copyright {
     font-size: 15px;
     color: #AEAEAE;
