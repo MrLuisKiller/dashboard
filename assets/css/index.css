@@ -1,0 +1,55 @@
+.navbar {
+padding: 1rem;
+background: #F5F6F7;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-image {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    border: 2px solid purple;
+}
+
+.light { background: #F5F6F7; }
+
+.dark {
+    color: white;
+    background: #1B1B32;
+}
+
+.copyright {
+    font-size: 15px;
+    color: #AEAEAE;
+    padding: 10px;
+}
+
+.social-net a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: all .2s ease-in;
+}
+
+.social-net i {
+    color: white;
+    font-size: 1.5rem;
+    transition: all .2s ease-in;
+}
+
+.social-net a:hover {
+    background: white;
+    border: 2px solid rgb(13, 110, 253);
+}
+
+.social-net a:hover i { color: black; }
