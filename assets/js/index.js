@@ -62,6 +62,7 @@ window.addEventListener('load', async () => {
     })
 
     loadDropDownList()
+    loadTable()
 })
 
 const loadDropDownList = () => {
@@ -76,4 +77,39 @@ const loadDropDownList = () => {
         if (!exist)
             ddCodes.innerHTML += `<option id="${el[0]}" value="${el[0]}">${el[1]}</option>`
     })
+}
+
+const loadTable = () => {
+    tBody.innerHTML = ''
+    if (labels.length > 0)
+        labels.forEach(label => {
+            let index = labels.findIndex(labelI => labelI == label)
+            let code = ''
+            preSave.codeList.forEach(codeL => {
+                if (codeL[1] == label)
+                    code = codeL[0]
+            })
+            let tr = document.createElement('tr')
+            let tdCode = document.createElement('td')
+            tdCode.classList.add('text-center')
+            tdCode.innerHTML = code
+            let tdName = document.createElement('td')
+            tdName.classList.add('text-center')
+            tdName.innerHTML = label
+            let tdRate = document.createElement('td')
+            tdRate.classList.add('text-center')
+            tdRate.innerHTML = rates[index]
+            let tdButton = document.createElement('td')
+            tdButton.classList.add('text-center')
+            let i = document.createElement('i')
+            i.classList.add('bi')
+            i.classList.add('bi-trash3')
+            i.classList.add('text-danger')
+            tdButton.appendChild(i)
+            tr.appendChild(tdCode)
+            tr.appendChild(tdName)
+            tr.appendChild(tdRate)
+            tr.appendChild(tdButton)
+            tBody.appendChild(tr)
+        })
 }
