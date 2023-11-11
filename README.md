@@ -16,6 +16,8 @@ Se muestra las divisas seleccionadas en una tabla, en la cual también se pueden
 ## Vista previa de gráfica
 ![Vista previa gráfica](./assets/images/Vista%20previa%20grafica.png)
 
+[Dashboard](https://dashboard-mlk.netlify.app/)
+
 ## Pruébalo
 
 Clonar el proyecto
