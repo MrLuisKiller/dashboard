@@ -51,7 +51,7 @@ window.addEventListener('load', async () => {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Price per Dollar',
+                label: 'Precio por Dolar',
                 data: rates,
                 backgroundColor: BackgroundColor,
                 borderColor: BorderColor,
@@ -72,11 +72,8 @@ window.addEventListener('load', async () => {
 ddCodes.addEventListener('change', () => {
     const code = preSave.codeList.find(code => code[0] == ddCodes.value)
 
-    if (preSave.persCodes.length < 4) {
-        preSave.persCodes.push(code)
-        localStorage.setItem('preSave', JSON.stringify(preSave))
-    }
-
+    preSave.persCodes.push(code)
+    localStorage.setItem('preSave', JSON.stringify(preSave))
     labels.push(code[1])
     rates.push(preSave.historical.rates[code[0]])
     chart.update()
@@ -89,7 +86,7 @@ const loadDropDownList = () => {
     validateList()
 
     ddCodes.innerHTML = '';
-    ddCodes.innerHTML = '<option selected>Choose...</option>'
+    ddCodes.innerHTML = '<option selected>Escoge...</option>'
     preSave.codeList.map(el => {
         let exist = false
 
@@ -99,7 +96,7 @@ const loadDropDownList = () => {
         })
 
         if (!exist)
-            ddCodes.innerHTML += `<option id="${el[0]}" value="${el[0]}">${el[1]}</option>`
+            ddCodes.innerHTML += `<option value="${el[0]}">${el[1]}</option>`
     })
 }
 
@@ -130,8 +127,8 @@ const loadTable = () => {
             let i = document.createElement('i')
             i.classList.add('bi')
             i.classList.add('bi-trash3')
-            i.onclick = () => deleteCode(label)
             i.classList.add('text-danger')
+            i.onclick = () => deleteCode(label)
             tdButton.appendChild(i)
             tr.appendChild(tdCode)
             tr.appendChild(tdName)
@@ -141,11 +138,11 @@ const loadTable = () => {
         })
     else
         tBody.innerHTML = `<tr>
-            <td class="table-danger text-center">No codes Selected</td>
+            <td class="table-danger text-center">Ninguna divisa seleccionada</td>
         </tr>`
 }
 
-const validateList = () => ddCodes.disabled = !(preSave.persCodes.length < 4 || labels.length < 7)
+const validateList = () => ddCodes.disabled = !(labels.length < 7)
 
 const deleteCode = label => {
     let index
@@ -158,13 +155,9 @@ const deleteCode = label => {
         }
     })
     index = labels.findIndex(labelI => labelI == label)
-    deleteData(index)
-    loadDropDownList()
-    loadTable()
-}
-
-const deleteData = index => {
     labels.splice(index, 1)
     rates.splice(index, 1)
     chart.update()
+    loadDropDownList()
+    loadTable()
 }
