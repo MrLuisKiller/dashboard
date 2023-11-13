@@ -19,17 +19,14 @@ window.addEventListener('load', async () => {
     const date = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
     let codes
 
-    if (preSave.persCodes.length > 0)
-        codes = preSave.persCodes
-    else {
-        codes = Codes
-        codes.splice(0, 1)
-    }
-
     if (Object.keys(preSave.codeList).length == 0) {
+        let index
+
         preSave.codeList = await fetch(`https://v6.exchangerate-api.com/v6/${API}/codes`, { headers: headers })
             .then(res => res.json())
             .then(res => res.supported_codes)
+        index = preSave.codeList.findIndex(code => code[0] == Codes[0])
+        preSave.codeList.splice(index, 1)
         localStorage.setItem('preSave', JSON.stringify(preSave))
     }
 
@@ -39,6 +36,13 @@ window.addEventListener('load', async () => {
             .then(res => res.conversion_rates)
         preSave.historical.last_update = date
         localStorage.setItem('preSave', JSON.stringify(preSave))
+    }
+
+    if (preSave.persCodes.length > 0)
+        codes = preSave.persCodes
+    else {
+        codes = Codes
+        codes.splice(0, 1)
     }
 
     codes.forEach(code => {
