@@ -1,6 +1,6 @@
 # Dashboard
 
-Dashboard con gráfica de ChartJs, utilizando la API de [Exchange Rate API](https://www.exchangerate-api.com/).
+Dashboard con gráfica de [ChartJs](https://www.chartjs.org/), utilizando la API de [Exchange Rate API](https://www.exchangerate-api.com/).
 
 Guardado en localStorage para asegurar de no pasarse de peticiones (1500 por mes).
 
